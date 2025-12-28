@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Checkend</RootNamespace>
+    <PackageId>Checkend</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Furvur</Authors>
+    <Company>Furvur</Company>
+    <Description>.NET SDK for Checkend error monitoring</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/furvur/checkend-dotnet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/furvur/checkend-dotnet</RepositoryUrl>
+    <PackageTags>error-monitoring;exception-handling;checkend</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>
