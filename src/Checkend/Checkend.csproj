@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Checkend</RootNamespace>
     <PackageId>Checkend</PackageId>
-    <Version>0.1.0</Version>
+    <Version>1.0.0</Version>
     <Authors>Furvur</Authors>
     <Company>Furvur</Company>
     <Description>.NET SDK for Checkend error monitoring</Description>
