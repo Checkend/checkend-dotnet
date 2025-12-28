@@ -322,6 +322,37 @@ dotnet test
 dotnet pack
 ```
 
+## Publishing to NuGet
+
+### Via GitHub Actions UI (Recommended)
+
+1. Go to **Actions** → **Publish to NuGet** → **Run workflow**
+2. Enter the version number (e.g., `0.2.0`)
+3. Click **Run workflow**
+
+The workflow will automatically:
+- Update the version in the csproj
+- Build and run tests
+- Commit the version change
+- Create a git tag and GitHub release
+- Publish to NuGet
+
+### Via GitHub Release
+
+1. Update the version in `src/Checkend/Checkend.csproj`
+2. Commit and push the version change
+3. Create a new GitHub release with a tag (e.g., `v0.1.0`)
+4. The publish workflow will automatically build, test, and push to NuGet
+
+### Manual Publishing
+
+```bash
+dotnet pack src/Checkend/Checkend.csproj -c Release
+dotnet nuget push src/Checkend/bin/Release/Checkend.*.nupkg \
+  --api-key YOUR_API_KEY \
+  --source https://api.nuget.org/v3/index.json
+```
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
