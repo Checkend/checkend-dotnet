@@ -55,3 +55,6 @@ Thumbs.db
 appsettings.*.json
 !appsettings.Development.json.example
 secrets.json
+
+# Claude
+CLAUDE.md

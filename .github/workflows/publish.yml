@@ -47,11 +47,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit version update
+      - name: Install git-cliff
+        if: github.event_name == 'workflow_dispatch'
+        uses: kenji-miyake/setup-git-cliff@v2
+
+      - name: Generate changelog
         if: github.event_name == 'workflow_dispatch'
         run: |
-          git add src/Checkend/Checkend.csproj
-          git commit -m "Bump version to ${{ inputs.version }}"
+          git-cliff --tag "v${{ inputs.version }}" -o CHANGELOG.md
+
+      - name: Commit version and changelog
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git add src/Checkend/Checkend.csproj CHANGELOG.md
+          git commit -m "Release v${{ inputs.version }}"
           git push
 
       - name: Create tag and release
