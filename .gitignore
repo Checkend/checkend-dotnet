@@ -44,3 +44,14 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Secrets and environment files
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+appsettings.*.json
+!appsettings.Development.json.example
+secrets.json
