@@ -34,6 +34,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(true));
 
         try
@@ -59,6 +60,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(true));
 
         try
@@ -87,6 +89,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(true));
 
         CheckendClient.SetContext(new Dictionary<string, object?> { ["key1"] = "value1" });
@@ -109,6 +112,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(true));
 
         CheckendClient.SetContext(new Dictionary<string, object?> { ["feature"] = "checkout" });
@@ -136,6 +140,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(false));
 
         try
@@ -155,6 +160,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(true)
             .AddIgnoredException<ArgumentException>());
 
@@ -187,6 +193,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(true)
             .AddBeforeNotify(notice =>
             {
@@ -213,6 +220,7 @@ public class CheckendClientTests : IDisposable
     {
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Enabled(true)
             .AddBeforeNotify(notice =>
             {

@@ -5,7 +5,6 @@ namespace Checkend;
 /// </summary>
 public sealed class Configuration
 {
-    private const string DefaultEndpoint = "https://app.checkend.io";
     private const int DefaultTimeout = 15000;
     private const int DefaultMaxQueueSize = 1000;
 
@@ -17,7 +16,7 @@ public sealed class Configuration
     };
 
     public string ApiKey { get; init; } = "";
-    public string Endpoint { get; init; } = DefaultEndpoint;
+    public string Endpoint { get; init; } = "";
     public string Environment { get; init; } = DetectEnvironment();
     public bool Enabled { get; init; } = true;
     public bool AsyncSend { get; init; } = true;
@@ -94,7 +93,7 @@ public sealed class Configuration
     public class Builder
     {
         private string _apiKey = "";
-        private string _endpoint = DefaultEndpoint;
+        private string _endpoint = "";
         private string _environment = DetectEnvironment();
         private bool _enabled = true;
         private bool _asyncSend = true;
@@ -180,6 +179,11 @@ public sealed class Configuration
             if (string.IsNullOrEmpty(_apiKey))
             {
                 throw new InvalidOperationException("API key is required");
+            }
+
+            if (string.IsNullOrEmpty(_endpoint))
+            {
+                throw new InvalidOperationException("Endpoint is required");
             }
 
             return new Configuration(_apiKey)

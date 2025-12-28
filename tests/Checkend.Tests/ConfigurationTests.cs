@@ -14,14 +14,25 @@ public class ConfigurationTests
     }
 
     [Fact]
+    public void RequiresEndpoint()
+    {
+        Assert.Throws<InvalidOperationException>(() =>
+            new Configuration.Builder()
+                .ApiKey("test-key")
+                .Build()
+        );
+    }
+
+    [Fact]
     public void DefaultValues()
     {
         var config = new Configuration.Builder()
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Build();
 
         Assert.Equal("test-key", config.ApiKey);
-        Assert.Equal("https://app.checkend.io", config.Endpoint);
+        Assert.Equal("https://example.com", config.Endpoint);
         Assert.Equal(15000, config.Timeout);
         Assert.Equal(1000, config.MaxQueueSize);
         Assert.True(config.AsyncSend);
@@ -56,6 +67,7 @@ public class ConfigurationTests
     {
         var config = new Configuration.Builder()
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .Build();
 
         Assert.Contains("password", config.FilterKeys);
@@ -70,6 +82,7 @@ public class ConfigurationTests
     {
         var config = new Configuration.Builder()
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .AddFilterKey("custom_secret")
             .Build();
 
@@ -82,6 +95,7 @@ public class ConfigurationTests
     {
         var config = new Configuration.Builder()
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .AddIgnoredException<InvalidOperationException>()
             .AddIgnoredException("CustomException")
             .AddIgnoredException(new Regex(".*NotFound.*"))
@@ -95,6 +109,7 @@ public class ConfigurationTests
     {
         var config = new Configuration.Builder()
             .ApiKey("test-key")
+            .Endpoint("https://example.com")
             .AddBeforeNotify(notice =>
             {
                 notice.Context["test"] = true;

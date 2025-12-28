@@ -2,7 +2,9 @@
 
 [![Test](https://github.com/Checkend/checkend-dotnet/actions/workflows/test.yml/badge.svg)](https://github.com/Checkend/checkend-dotnet/actions/workflows/test.yml)
 
-.NET SDK for [Checkend](https://checkend.io) error monitoring. Async by default with ASP.NET Core integration.
+.NET SDK for [Checkend](https://checkend.com) error monitoring. Async by default with ASP.NET Core integration.
+
+Works with both the hosted service and [self-hosted Checkend server](https://github.com/Checkend/checkend).
 
 ## Features
 
@@ -39,6 +41,7 @@ using Checkend;
 // Configure the SDK
 CheckendClient.Configure(builder => builder
     .ApiKey("your-api-key")
+    .Endpoint("https://your-checkend-server.com")
 );
 
 // Report an error
@@ -56,8 +59,8 @@ catch (Exception ex)
 
 ```csharp
 CheckendClient.Configure(builder => builder
-    .ApiKey("your-api-key")              // Required
-    .Endpoint("https://app.checkend.io") // Optional: Custom endpoint
+    .ApiKey("your-api-key")                       // Required
+    .Endpoint("https://your-checkend-server.com") // Required
     .Environment("production")            // Optional: Auto-detected
     .Enabled(true)                        // Optional: Enable/disable
     .AsyncSend(true)                      // Optional: Async sending (default: true)
@@ -157,6 +160,7 @@ builder.Services.AddCheckend(builder.Configuration);
 // Or configure directly
 builder.Services.AddCheckend(config => config
     .ApiKey("your-api-key")
+    .Endpoint("https://your-checkend-server.com")
     .Environment("production")
 );
 
@@ -174,7 +178,7 @@ app.Run();
 {
   "Checkend": {
     "ApiKey": "your-api-key",
-    "Endpoint": "https://app.checkend.io",
+    "Endpoint": "https://your-checkend-server.com",
     "Environment": "production",
     "Enabled": true,
     "Debug": false
@@ -216,6 +220,7 @@ public class MyTests : IDisposable
         Testing.Setup();
         CheckendClient.Configure(builder => builder
             .ApiKey("test-key")
+            .Endpoint("https://your-checkend-server.com")
             .Enabled(true)
         );
     }
