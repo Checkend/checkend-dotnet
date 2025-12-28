@@ -1,5 +1,7 @@
 # Checkend .NET SDK
 
+[![Test](https://github.com/Checkend/checkend-dotnet/actions/workflows/test.yml/badge.svg)](https://github.com/Checkend/checkend-dotnet/actions/workflows/test.yml)
+
 .NET SDK for [Checkend](https://checkend.io) error monitoring. Async by default with ASP.NET Core integration.
 
 ## Features
