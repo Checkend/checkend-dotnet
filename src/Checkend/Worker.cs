@@ -66,7 +66,17 @@ public sealed class Worker : IDisposable
                     return;
                 }
 
-                // Don't retry client errors (4xx)
+                // Don't retry rate limited requests - just drop the notice
+                if (response.IsRateLimited)
+                {
+                    if (_config.Debug)
+                    {
+                        Console.Error.WriteLine("[Checkend] Rate limited, dropping notice");
+                    }
+                    return;
+                }
+
+                // Don't retry other client errors (4xx)
                 if (response.StatusCode >= 400 && response.StatusCode < 500)
                 {
                     if (_config.Debug)
